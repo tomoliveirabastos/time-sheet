@@ -1,0 +1,55 @@
+import { Button, TextEdit, VerticalBox } from "std-widgets.slint";
+export component AppWindow inherits Window {
+
+    in-out property<string> descricao_texto: "";
+    in-out property <string> error_message: "";
+    callback request_callback_values();
+    
+    title: "Reso - Time Sheet";
+    width: 600px;
+    height: 290px;
+
+    VerticalBox {
+        padding: 30px;
+        Text {
+            font-size: 20px;
+            height: 30px;
+            text: "Descrição da Tarefa:";
+        }
+        TextEdit {
+            font-size: 20px;
+            text: "";
+            height: 100px;
+            edited => {
+                root.descricao_texto = self.text;
+            }
+        }
+
+        Button {
+            text: "Iniciar Tarefa";
+            height: 30px;
+            clicked => {
+                if (root.descricao_texto == "") {
+                    root.error_message = "Digite alguma coisa na descrição";
+                } else {
+                    root.error_message = "";
+                    root.request_callback_values();
+                }
+            }
+        }
+
+        Button {
+            text: "Finalizar Tarefa";
+            height: 30px;
+            clicked => {
+                root.request_callback_values();
+            }
+        }
+
+        Text {
+            font-size: 20px;
+            text: "\{root.error_message}";
+            color: red;
+        }
+    }
+}

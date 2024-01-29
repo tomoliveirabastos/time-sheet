@@ -1,0 +1,18 @@
+[package]
+name = "time-sheet"
+version = "0.1.0"
+authors = ["Tom Oliveira <washington-kd@hotmail.com>"]
+edition = "2021"
+build = "build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+slint = "1.3"
+dotenvy = "0.15"
+mysql = "24.0.0"
+whoami = "1.4.1"
+chrono = "0.4.33"
+
+[build-dependencies]
+slint-build = "1.3"
